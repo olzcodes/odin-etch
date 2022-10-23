@@ -2,6 +2,7 @@ const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
+let tiles = [];
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
@@ -21,13 +22,14 @@ const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
 };
 
-let tiles = document.querySelectorAll(".tile");
-
-tiles.forEach((tile) =>
-  tile.addEventListener("mouseover", function (e) {
-    tile.classList.add("shaded");
-  })
-);
+const prepareTiles = function () {
+  tiles = document.querySelectorAll(".tile");
+  tiles.forEach((tile) =>
+    tile.addEventListener("mouseover", function () {
+      tile.classList.add("shaded");
+    })
+  );
+};
 
 const getSliderValue = function () {
   sliderValue.textContent = sliderControl.getAttribute("value");
@@ -40,4 +42,7 @@ sliderControl.addEventListener("click", function () {
   getSliderValue();
   deleteTiles();
   generateTiles(this.value);
+  prepareTiles();
 });
+
+prepareTiles();
