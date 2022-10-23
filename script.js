@@ -2,6 +2,7 @@ const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
+const defaultSize = 32;
 let tiles = [];
 
 const generateTiles = function (input) {
@@ -23,12 +24,6 @@ const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
 };
 
-const prepareTiles = function () {
-  sketchContainer.addEventListener("mouseover", function (e) {
-    e.target.classList.add("shaded");
-  });
-};
-
 const getSliderValue = function () {
   let value = sliderControl.getAttribute("value");
   sliderValue.textContent = `${value} x ${value}`;
@@ -41,8 +36,21 @@ sliderControl.addEventListener("click", function () {
   getSliderValue();
   deleteTiles();
   generateTiles(this.value);
-  prepareTiles();
 });
 
-generateTiles(16);
-prepareTiles();
+generateTiles(defaultSize);
+
+const shadeTiles = function (e) {
+  e.target.classList.add("shaded");
+};
+
+const activateBrush = function () {
+  sketchContainer.addEventListener("mouseover", shadeTiles);
+};
+
+const deactivateBrush = function () {
+  sketchContainer.removeEventListener("mouseover", shadeTiles);
+};
+
+sketchContainer.addEventListener("mousedown", activateBrush);
+sketchContainer.addEventListener("mouseup", deactivateBrush);
