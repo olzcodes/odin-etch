@@ -8,31 +8,30 @@ const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
     sketchContainer.innerHTML += `<div class="column-${i + 1}"></div>`;
     let column = document.querySelector(`.column-${i + 1}`);
+    column.style.width = `${100 / input}vmin`;
     for (j = 0; j < input; j++) {
       column.innerHTML += `<div class="tile column-${i + 1} row-${
         j + 1
       }"></div>`;
+      let tile = document.querySelector(`.tile.column-${i + 1}.row-${j + 1}`);
+      tile.style.height = `${100 / input}vmin`;
     }
   }
 };
-
-generateTiles(16);
 
 const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
 };
 
 const prepareTiles = function () {
-  tiles = document.querySelectorAll(".tile");
-  tiles.forEach((tile) =>
-    tile.addEventListener("mouseover", function () {
-      tile.classList.add("shaded");
-    })
-  );
+  sketchContainer.addEventListener("mouseover", function (e) {
+    e.target.classList.add("shaded");
+  });
 };
 
 const getSliderValue = function () {
-  sliderValue.textContent = sliderControl.getAttribute("value");
+  let value = sliderControl.getAttribute("value");
+  sliderValue.textContent = `${value} x ${value}`;
 };
 
 getSliderValue();
@@ -45,4 +44,5 @@ sliderControl.addEventListener("click", function () {
   prepareTiles();
 });
 
+generateTiles(16);
 prepareTiles();
