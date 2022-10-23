@@ -39,3 +39,12 @@ h1 {
 .tile.shaded {
   background-color: mediumslateblue;
 }
+
+.range-slider {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+.slider-value {
+}
