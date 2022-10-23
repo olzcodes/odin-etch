@@ -8,13 +8,14 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0px;
 }
 
 h1 {
@@ -23,6 +24,7 @@ h1 {
 }
 
 .sketch-container {
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -30,10 +32,8 @@ h1 {
 
 .tile {
   flex: 1;
-  height: 1em;
-  width: 1em;
   background-color: silver;
-  border: 1px solid white;
+  border: 1px solid lightgrey;
 }
 
 .tile.shaded {
@@ -44,7 +44,4 @@ h1 {
   display: flex;
   justify-content: center;
   margin: 1em;
-}
-
-.slider-value {
 }
