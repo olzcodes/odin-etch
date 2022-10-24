@@ -68,6 +68,11 @@ h1 {
   align-items: center;
 }
 
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .options-menu button {
   height: 2em;
   width: 5em;
@@ -91,5 +96,13 @@ h1 {
 @media only screen and (min-width: 768px) {
   .sketch-container {
     max-width: 70vmin;
+  }
+}
+
+/* For smaller screens */
+@media only screen and (max-width: 400px) {
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
   }
 }
