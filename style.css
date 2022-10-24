@@ -8,15 +8,15 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: orangered;
-  color: white; */
+  background-color: orangered;
+  color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   margin: 0px;
@@ -58,7 +58,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 1em 0.5em;
+  margin: 1em 1em;
 }
 
 .range-slider {
