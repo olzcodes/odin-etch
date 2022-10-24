@@ -2,7 +2,7 @@ const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
-const defaultSize = 32;
+let canvasSize = 32;
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
@@ -23,37 +23,35 @@ const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
 };
 
-const getSliderValue = function () {
-  let value = sliderControl.getAttribute("value");
-  sliderValue.textContent = `${value} x ${value}`;
+const showSliderValue = function () {
+  sliderValue.textContent = `${canvasSize} x ${canvasSize}`;
 };
 
-getSliderValue();
+showSliderValue();
 
 const changeResolution = function () {
-  sliderControl.setAttribute("value", this.value);
-  getSliderValue();
+  canvasSize = this.value;
+  showSliderValue();
   deleteTiles();
-  generateTiles(this.value);
+  generateTiles(canvasSize);
 };
 
 sliderControl.addEventListener("click", changeResolution);
 sliderControl.addEventListener("touchstart", changeResolution);
 sliderControl.addEventListener("touchend", changeResolution);
 
-generateTiles(defaultSize);
+generateTiles(canvasSize);
 
 const shadeTiles = function (e) {
   e.target.classList.add("shaded");
 };
 
-const activateBrush = function () {
-  sketchContainer.addEventListener("mousedown", shadeTiles);
+const activateBrush = function (e) {
+  e.target.classList.add("shaded");
   sketchContainer.addEventListener("mouseover", shadeTiles);
 };
 
 const deactivateBrush = function () {
-  sketchContainer.removeEventListener("mouseup", shadeTiles);
   sketchContainer.removeEventListener("mouseover", shadeTiles);
 };
 
