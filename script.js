@@ -40,7 +40,7 @@ const changeResolution = function () {
 
 sliderControl.addEventListener("click", changeResolution);
 sliderControl.addEventListener("touchstart", changeResolution);
-sliderControl.addEventListener("touchmove", changeResolution);
+sliderControl.addEventListener("touchend", changeResolution);
 
 generateTiles(defaultSize);
 
@@ -62,7 +62,7 @@ sketchContainer.addEventListener("mouseup", deactivateBrush);
 // For touch screens
 
 sketchContainer.addEventListener("touchstart", shadeTiles);
-sketchContainer.addEventListener("touchmove", shadeTiles);
+sketchContainer.addEventListener("touchend", shadeTiles);
 
 // sketchContainer.addEventListener("touchstart", activateBrushTouch);
 // sketchContainer.addEventListener("touchend", deactivateBrushTouch);
