@@ -23,6 +23,7 @@ const generateTiles = function (input) {
       tile.style.height = `${sketchContainerWidth / input}px`;
     }
   }
+  canvasBlank = true;
 };
 
 const deleteTiles = function () {
@@ -38,13 +39,15 @@ showSliderValue();
 const changeResolution = function () {
   if (!canvasBlank) {
     const reset = confirm("This will clear the canvas. Continue?");
-    if (!reset) return;
+    if (!reset) {
+      return;
+    }
   }
   canvasSize = this.value;
+  sliderControl.setAttribute("value", canvasSize);
   showSliderValue();
   deleteTiles();
   generateTiles(canvasSize);
-  canvasBlank = true;
 };
 
 sliderControl.addEventListener("click", changeResolution);
