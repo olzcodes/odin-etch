@@ -48,17 +48,15 @@ h1 {
 .options-menu {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 1em;
+  /* align-items: center; */
+  margin: 0.5em;
 }
 
 .range-slider {
   display: flex;
-  justify-content: left;
-}
-
-.slider-value {
-  /* text-shadow: 0px 0px 2px black; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .options-menu button {
