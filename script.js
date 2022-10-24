@@ -5,19 +5,22 @@ const sliderValue = document.querySelector(".slider-value");
 const btnReset = document.querySelector(".button.reset");
 const btnRainbow = document.querySelector(".button.rainbow");
 const btnEraser = document.querySelector(".button.eraser");
+let canvasBlank = true;
 let canvasSize = 32;
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
     sketchContainer.innerHTML += `<div class="column-${i + 1}"></div>`;
     let column = document.querySelector(`.column-${i + 1}`);
-    column.style.width = `${100 / input}vmin`;
+    let sketchContainerWidth = sketchContainer.clientWidth;
+    console.log(sketchContainerWidth);
+    column.style.width = `${sketchContainerWidth / input}px`;
     for (j = 0; j < input; j++) {
       column.innerHTML += `<div class="tile column-${i + 1} row-${
         j + 1
       }"></div>`;
       let tile = document.querySelector(`.tile.column-${i + 1}.row-${j + 1}`);
-      tile.style.height = `${100 / input}vmin`;
+      tile.style.height = `${sketchContainerWidth / input}px`;
     }
   }
 };
@@ -33,10 +36,15 @@ const showSliderValue = function () {
 showSliderValue();
 
 const changeResolution = function () {
+  if (!canvasBlank) {
+    const reset = confirm("This will clear the canvas. Continue?");
+    if (!reset) return;
+  }
   canvasSize = this.value;
   showSliderValue();
   deleteTiles();
   generateTiles(canvasSize);
+  canvasBlank = true;
 };
 
 sliderControl.addEventListener("click", changeResolution);
@@ -52,6 +60,7 @@ const shadeTiles = function (e) {
 const activateBrush = function (e) {
   e.target.classList.add("shaded");
   sketchContainer.addEventListener("mouseover", shadeTiles);
+  canvasBlank = false;
 };
 
 const deactivateBrush = function () {
@@ -71,11 +80,12 @@ sketchContainer.addEventListener("touchend", shadeTiles);
 
 // Reset button
 btnReset.addEventListener("click", function () {
-  const reset = confirm("Clear canvas?");
-  if (reset) {
-    deleteTiles();
-    generateTiles(canvasSize);
+  if (!canvasBlank) {
+    const reset = confirm("This will clear the canvas. Continue?");
+    if (!reset) return;
   }
+  deleteTiles();
+  generateTiles(canvasSize);
 });
 
 // Rainbow button
