@@ -2,6 +2,9 @@ const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
+const btnReset = document.querySelector(".button.reset");
+const btnRainbow = document.querySelector(".button.rainbow");
+const btnEraser = document.querySelector(".button.eraser");
 let canvasSize = 32;
 
 const generateTiles = function (input) {
@@ -65,3 +68,24 @@ sketchContainer.addEventListener("mouseover", function () {
 // For touch screens
 sketchContainer.addEventListener("touchstart", shadeTiles);
 sketchContainer.addEventListener("touchend", shadeTiles);
+
+// Reset button
+btnReset.addEventListener("click", function () {
+  const reset = confirm("Clear canvas?");
+  if (reset) {
+    deleteTiles();
+    generateTiles(canvasSize);
+  }
+});
+
+// Rainbow button
+btnRainbow.addEventListener("click", function () {
+  btnRainbow.classList.toggle("on");
+  btnEraser.classList.remove("on");
+});
+
+// Eraser button
+btnEraser.addEventListener("click", function () {
+  btnEraser.classList.toggle("on");
+  btnRainbow.classList.remove("on");
+});
