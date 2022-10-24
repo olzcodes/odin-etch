@@ -8,15 +8,15 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: orangered;
-  color: white;
+  /* background-color: orangered;
+  color: white; */
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   margin: 0px;
@@ -85,4 +85,11 @@ h1 {
 
 .slider-value {
   margin: 0.5em;
+}
+
+/* For larger screens */
+@media only screen and (min-width: 768px) {
+  .sketch-container {
+    max-width: 70vmin;
+  }
 }
