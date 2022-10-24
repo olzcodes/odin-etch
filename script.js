@@ -32,7 +32,6 @@ getSliderValue();
 
 const changeResolution = function () {
   sliderControl.setAttribute("value", this.value);
-  console.log(this.value);
   getSliderValue();
   deleteTiles();
   generateTiles(this.value);
@@ -49,20 +48,22 @@ const shadeTiles = function (e) {
 };
 
 const activateBrush = function () {
+  sketchContainer.addEventListener("mousedown", shadeTiles);
   sketchContainer.addEventListener("mouseover", shadeTiles);
 };
 
 const deactivateBrush = function () {
+  sketchContainer.removeEventListener("mouseup", shadeTiles);
   sketchContainer.removeEventListener("mouseover", shadeTiles);
 };
 
 sketchContainer.addEventListener("mousedown", activateBrush);
 sketchContainer.addEventListener("mouseup", deactivateBrush);
 
-// For touch screens
+sketchContainer.addEventListener("mouseover", function () {
+  sketchContainer.style.cursor = "crosshair";
+});
 
+// For touch screens
 sketchContainer.addEventListener("touchstart", shadeTiles);
 sketchContainer.addEventListener("touchend", shadeTiles);
-
-// sketchContainer.addEventListener("touchstart", activateBrushTouch);
-// sketchContainer.addEventListener("touchend", deactivateBrushTouch);
