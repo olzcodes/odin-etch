@@ -30,12 +30,15 @@ const getSliderValue = function () {
 
 getSliderValue();
 
-sliderControl.addEventListener("click", function () {
+const changeResolution = function () {
   sliderControl.setAttribute("value", this.value);
   getSliderValue();
   deleteTiles();
   generateTiles(this.value);
-});
+};
+
+sliderControl.addEventListener("click", changeResolution);
+sliderControl.addEventListener("click", changeResolution);
 
 generateTiles(defaultSize);
 
@@ -63,5 +66,5 @@ const deactivateBrushTouch = function () {
   sketchContainer.removeEventListener("touchend", shadeTiles);
 };
 
-sketchContainer.addEventListener("touchmove", activateBrushTouch);
-sketchContainer.addEventListener("touchmove", deactivateBrushTouch);
+// sketchContainer.addEventListener("touchstart", activateBrushTouch);
+// sketchContainer.addEventListener("touchend", deactivateBrushTouch);
