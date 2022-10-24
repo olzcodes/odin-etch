@@ -56,12 +56,12 @@ sketchContainer.addEventListener("mouseup", deactivateBrush);
 
 // For touch screens
 const activateBrushTouch = function () {
-  sketchContainer.addEventListener("touchmove", shadeTiles);
+  sketchContainer.addEventListener("touchstart", shadeTiles);
 };
 
 const deactivateBrushTouch = function () {
-  sketchContainer.removeEventListener("touchmove", shadeTiles);
+  sketchContainer.removeEventListener("touchend", shadeTiles);
 };
 
-sketchContainer.addEventListener("touchstart", activateBrushTouch);
-sketchContainer.addEventListener("touchend", deactivateBrushTouch);
+sketchContainer.addEventListener("touchmove", activateBrushTouch);
+sketchContainer.addEventListener("touchmove", deactivateBrushTouch);
