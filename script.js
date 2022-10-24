@@ -3,7 +3,6 @@ const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
 const defaultSize = 32;
-let tiles = [];
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
@@ -54,3 +53,15 @@ const deactivateBrush = function () {
 
 sketchContainer.addEventListener("mousedown", activateBrush);
 sketchContainer.addEventListener("mouseup", deactivateBrush);
+
+// For touch screens
+const activateBrushTouch = function () {
+  sketchContainer.addEventListener("touchmove", shadeTiles);
+};
+
+const deactivateBrushTouch = function () {
+  sketchContainer.removeEventListener("touchmove", shadeTiles);
+};
+
+sketchContainer.addEventListener("touchstart", activateBrushTouch);
+sketchContainer.addEventListener("touchend", deactivateBrushTouch);
