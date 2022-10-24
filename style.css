@@ -24,6 +24,7 @@ body {
 
 h1 {
   text-align: center;
+  /* text-shadow: 0px 0px 5px black; */
   margin: 0px;
 }
 
@@ -44,10 +45,34 @@ h1 {
   background-color: mediumslateblue;
 }
 
+.options-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
+
 .range-slider {
   display: flex;
-  justify-content: center;
-  margin: 1em;
+  justify-content: left;
+}
+
+.slider-value {
+  /* text-shadow: 0px 0px 2px black; */
+}
+
+.options-menu button {
+  height: 2em;
+  width: 5em;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 3px;
+}
+
+.options-menu button.on {
+  background-color: silver;
+  color: grey;
+  border: 2px solid white;
 }
 
 .slider-value {
