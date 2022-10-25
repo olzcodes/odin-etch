@@ -7,6 +7,17 @@ const btnRainbow = document.querySelector(".button.rainbow");
 const btnEraser = document.querySelector(".button.eraser");
 let canvasBlank = true;
 let canvasSize = 32;
+let mode = "default";
+const rainbowColors = [
+  "crimson",
+  "tomato",
+  "yellow",
+  "lawngreen",
+  "royalblue",
+  "darkviolet",
+  "mediumorchid",
+];
+let drawingCounter = 0;
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
@@ -57,8 +68,22 @@ generateTiles(canvasSize);
 
 // Drawing functions
 
+const rainbowColor = function () {
+  let colorNumber = drawingCounter % 7;
+  console.log(drawingCounter);
+  console.log(colorNumber);
+  console.log(rainbowColors[colorNumber]);
+  return rainbowColors[colorNumber];
+};
+
 const shadeTile = function (e) {
-  e.target.classList.add("shaded");
+  if (mode === "default") {
+    e.target.style.backgroundColor = "mediumslateblue";
+  } else if (mode === "rainbow") {
+    e.target.style.backgroundColor = `${rainbowColor()}`;
+  } else if (mode === "eraser") {
+    e.target.style.backgroundColor = "silver";
+  }
 };
 
 const activateBrush = function (e) {
@@ -76,8 +101,13 @@ const deactivateBrush = function () {
 sketchContainer.addEventListener("mousedown", activateBrush);
 document.addEventListener("mouseup", deactivateBrush);
 
-sketchContainer.addEventListener("mouseover", function () {
-  sketchContainer.style.cursor = "crosshair";
+sketchContainer.addEventListener("mouseover", function (e) {
+  drawingCounter += 1;
+  if (mode === "eraser") {
+    sketchContainer.style.cursor = "crosshair";
+  } else {
+    sketchContainer.style.cursor = "cell";
+  }
 });
 
 // For touch screens
@@ -100,10 +130,16 @@ btnReset.addEventListener("click", function () {
 btnRainbow.addEventListener("click", function () {
   btnRainbow.classList.toggle("on");
   btnEraser.classList.remove("on");
+  sketchContainer.classList.remove("eraser-mode");
+  mode === "rainbow" ? (mode = "default") : (mode = "rainbow");
+  console.log(mode);
 });
 
 // Eraser button
 btnEraser.addEventListener("click", function () {
   btnEraser.classList.toggle("on");
   btnRainbow.classList.remove("on");
+  sketchContainer.classList.toggle("eraser-mode");
+  mode !== "eraser" ? (mode = "eraser") : (mode = "default");
+  console.log(mode);
 });
