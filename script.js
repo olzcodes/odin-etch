@@ -13,7 +13,6 @@ const generateTiles = function (input) {
     sketchContainer.innerHTML += `<div class="column-${i + 1}"></div>`;
     let column = document.querySelector(`.column-${i + 1}`);
     let sketchContainerWidth = sketchContainer.clientWidth;
-    console.log(sketchContainerWidth);
     column.style.width = `${sketchContainerWidth / input}px`;
     for (j = 0; j < input; j++) {
       column.innerHTML += `<div class="tile column-${i + 1} row-${
