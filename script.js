@@ -55,6 +55,8 @@ sliderControl.addEventListener("touchend", changeResolution);
 
 generateTiles(canvasSize);
 
+// Drawing functions
+
 const shadeTile = function (e) {
   e.target.classList.add("shaded");
 };
@@ -69,6 +71,8 @@ const deactivateBrush = function () {
   sketchContainer.removeEventListener("mouseover", shadeTile);
 };
 
+// Event Listeners
+
 document.addEventListener("mousedown", activateBrush);
 document.addEventListener("mouseup", deactivateBrush);
 
@@ -79,6 +83,8 @@ sketchContainer.addEventListener("mouseover", function () {
 // For touch screens
 sketchContainer.addEventListener("touchstart", shadeTile);
 sketchContainer.addEventListener("touchend", shadeTile);
+
+// Buttons
 
 // Reset button
 btnReset.addEventListener("click", function () {
