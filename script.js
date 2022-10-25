@@ -62,7 +62,7 @@ const shadeTile = function (e) {
 };
 
 const activateBrush = function (e) {
-  e.target.classList.add("shaded");
+  shadeTile(e);
   sketchContainer.addEventListener("mouseover", shadeTile);
   canvasBlank = false;
 };
@@ -73,7 +73,7 @@ const deactivateBrush = function () {
 
 // Event Listeners
 
-document.addEventListener("mousedown", activateBrush);
+sketchContainer.addEventListener("mousedown", activateBrush);
 document.addEventListener("mouseup", deactivateBrush);
 
 sketchContainer.addEventListener("mouseover", function () {
