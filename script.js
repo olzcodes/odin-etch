@@ -69,8 +69,8 @@ const deactivateBrush = function () {
   sketchContainer.removeEventListener("mouseover", shadeTiles);
 };
 
-sketchContainer.addEventListener("mousedown", activateBrush);
-sketchContainer.addEventListener("mouseup", deactivateBrush);
+document.addEventListener("mousedown", activateBrush);
+document.addEventListener("mouseup", deactivateBrush);
 
 sketchContainer.addEventListener("mouseover", function () {
   sketchContainer.style.cursor = "crosshair";
