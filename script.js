@@ -55,18 +55,18 @@ sliderControl.addEventListener("touchend", changeResolution);
 
 generateTiles(canvasSize);
 
-const shadeTiles = function (e) {
+const shadeTile = function (e) {
   e.target.classList.add("shaded");
 };
 
 const activateBrush = function (e) {
   e.target.classList.add("shaded");
-  sketchContainer.addEventListener("mouseover", shadeTiles);
+  sketchContainer.addEventListener("mouseover", shadeTile);
   canvasBlank = false;
 };
 
 const deactivateBrush = function () {
-  sketchContainer.removeEventListener("mouseover", shadeTiles);
+  sketchContainer.removeEventListener("mouseover", shadeTile);
 };
 
 document.addEventListener("mousedown", activateBrush);
@@ -77,8 +77,8 @@ sketchContainer.addEventListener("mouseover", function () {
 });
 
 // For touch screens
-sketchContainer.addEventListener("touchstart", shadeTiles);
-sketchContainer.addEventListener("touchend", shadeTiles);
+sketchContainer.addEventListener("touchstart", shadeTile);
+sketchContainer.addEventListener("touchend", shadeTile);
 
 // Reset button
 btnReset.addEventListener("click", function () {
