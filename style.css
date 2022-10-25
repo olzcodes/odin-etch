@@ -41,6 +41,7 @@ h1 {
   flex-direction: row;
   justify-content: center;
   min-width: 70vmin;
+  border: 2px solid black;
 }
 
 .tile {
@@ -71,15 +72,16 @@ h1 {
 .buttons-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .options-menu button {
-  height: 2em;
-  width: 5em;
+  height: 3em;
+  width: 6em;
   background-color: white;
   border: 2px solid black;
   border-radius: 3px;
-  margin: 2em;
+  margin: 1em;
 }
 
 .options-menu button.on {
