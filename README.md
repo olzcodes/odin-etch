@@ -4,6 +4,15 @@ The aim of this project is to build a browser version of an Etch-A-Sketch drawin
 
 https://www.theodinproject.com/lessons/foundations-etch-a-sketch
 
+## To-Do
+
+- [DONE] Create drawing canvas and drawing functionality
+- [DONE] Add option to change canvas size
+- [DONE] Add option to reset canvas
+- [DONE] Make layout responsive
+- Add rainbow paintbrush
+- Add eraser
+
 ## What I learnt from this project
 
 - Generating hundreds of new DOM elements can affect performance and degrade UX drastically.
