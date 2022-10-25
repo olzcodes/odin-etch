@@ -51,10 +51,6 @@ h1 {
   border: 1px solid lightgrey;
 }
 
-.tile.shaded {
-  background-color: mediumslateblue;
-}
-
 .eraser-mode:hover {
   border: 2px solid black;
 }
