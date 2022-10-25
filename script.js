@@ -1,3 +1,4 @@
+const body = document.querySelector("body");
 const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
@@ -9,13 +10,15 @@ let canvasBlank = true;
 let canvasSize = 32;
 let mode = "default";
 const rainbowColors = [
-  "crimson",
-  "tomato",
-  "yellow",
-  "lawngreen",
-  "royalblue",
-  "darkviolet",
-  "mediumorchid",
+  "#FFADAD",
+  "#FFD6A5",
+  "#FDFFB6",
+  "#CAFFBF",
+  "#9BF6FF",
+  "#A0C4FF",
+  "#BDB2FF",
+  "#FFC6FF",
+  "#FFFFFC",
 ];
 let drawingCounter = 0;
 
@@ -70,9 +73,6 @@ generateTiles(canvasSize);
 
 const rainbowColor = function () {
   let colorNumber = drawingCounter % 7;
-  console.log(drawingCounter);
-  console.log(colorNumber);
-  console.log(rainbowColors[colorNumber]);
   return rainbowColors[colorNumber];
 };
 
