@@ -74,7 +74,7 @@ generateTiles(canvasSize);
 // Drawing functions
 
 const rainbowColor = function () {
-  let colorNumber = drawingCounter % 7;
+  let colorNumber = drawingCounter % rainbowColors.length;
   return rainbowColors[colorNumber];
 };
 
