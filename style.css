@@ -28,6 +28,10 @@ h1 {
   margin: 10px;
 }
 
+h1.glowMode {
+  text-shadow: 0px 0px 10px pink;
+}
+
 .main-container {
   display: flex;
   flex-wrap: wrap;
