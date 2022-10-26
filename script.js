@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const h1 = document.querySelector("h1");
 const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
@@ -6,9 +7,11 @@ const sliderValue = document.querySelector(".slider-value");
 const btnReset = document.querySelector(".button.reset");
 const btnRainbow = document.querySelector(".button.rainbow");
 const btnEraser = document.querySelector(".button.eraser");
+const btnGlow = document.querySelector(".button.glow");
 let canvasBlank = true;
 let canvasSize = 32;
 let mode = "default";
+let glowMode = false;
 const rainbowColors = [
   "#FFADAD",
   "#FFD6A5",
@@ -81,10 +84,14 @@ const shadeTile = function (e) {
   if (e.target.classList.contains("sketch-container")) return;
   if (mode === "default") {
     e.target.style.backgroundColor = "mediumslateblue";
-    e.target.style.boxShadow = `0px 0px 20px 2px mediumslateblue`;
+    if (glowMode) {
+      e.target.style.boxShadow = `0px 0px 20px 2px mediumslateblue`;
+    }
   } else if (mode === "rainbow") {
     e.target.style.backgroundColor = `${rainbowColor()}`;
-    e.target.style.boxShadow = `0px 0px 10px 2px ${rainbowColor()}`;
+    if (glowMode) {
+      e.target.style.boxShadow = `0px 0px 10px 2px ${rainbowColor()}`;
+    }
   } else if (mode === "eraser") {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
@@ -136,14 +143,23 @@ btnRainbow.addEventListener("click", function () {
   btnEraser.classList.remove("on");
   sketchContainer.classList.remove("eraser-mode");
   mode === "rainbow" ? (mode = "default") : (mode = "rainbow");
-  console.log(mode);
 });
 
 // Eraser button
 btnEraser.addEventListener("click", function () {
   btnEraser.classList.toggle("on");
   btnRainbow.classList.remove("on");
+  btnGlow.classList.remove("on");
+  glowMode === true ? (glowMode = false) : null;
   sketchContainer.classList.toggle("eraser-mode");
   mode !== "eraser" ? (mode = "eraser") : (mode = "default");
-  console.log(mode);
+});
+
+// Glow mode button
+
+btnGlow.addEventListener("click", function () {
+  btnGlow.classList.toggle("on");
+  btnEraser.classList.remove("on");
+  h1.classList.toggle("glowMode");
+  glowMode === false ? (glowMode = true) : (glowMode = false);
 });
