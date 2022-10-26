@@ -77,6 +77,7 @@ const rainbowColor = function () {
 };
 
 const shadeTile = function (e) {
+  drawingCounter += 1;
   if (e.target.classList.contains("sketch-container")) return;
   if (mode === "default") {
     e.target.style.backgroundColor = "mediumslateblue";
@@ -106,7 +107,6 @@ sketchContainer.addEventListener("mousedown", activateBrush);
 document.addEventListener("mouseup", deactivateBrush);
 
 sketchContainer.addEventListener("mouseover", function (e) {
-  drawingCounter += 1;
   if (mode === "eraser") {
     sketchContainer.style.cursor = "crosshair";
   } else {
