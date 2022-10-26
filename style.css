@@ -16,7 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: orangered;
+  background-color: darkslateblue;
   color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -25,7 +25,6 @@ body {
 
 h1 {
   text-align: center;
-  /* text-shadow: 0px 0px 5px black; */
   margin: 10px;
 }
 
@@ -72,6 +71,7 @@ h1 {
 
 .buttons-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-evenly;
 }
@@ -86,9 +86,10 @@ h1 {
 }
 
 .options-menu button.on {
-  background-color: silver;
-  color: grey;
+  background-color: plum;
+  color: black;
   border: 2px solid white;
+  box-shadow: 0px 0px 5px white;
 }
 
 .slider-value {
