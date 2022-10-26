@@ -141,9 +141,28 @@ btnRainbow.addEventListener("click", function () {
   btnRainbow.classList.toggle("on");
   btnEraser.classList.remove("on");
   sketchContainer.classList.remove("eraser-mode");
-  mode === "rainbow" ? (mode = "default") : (mode = "rainbow");
-  mode === "eraser" ? (mode = "default") : null;
+  if (mode === "rainbow") {
+    mode = "default";
+    h1.innerHTML = "miniSKETCH";
+  } else {
+    mode = "rainbow";
+    h1.innerHTML = rainbowText(h1);
+  }
 });
+
+const rainbowText = function (HTMLelement) {
+  plainText = HTMLelement.textContent;
+  const array = plainText.split("");
+  let letterNumber = 0;
+  let rainbowTextHTML = "";
+  array.forEach((letter) => {
+    letterNumber++;
+    let colorNumber = letterNumber % rainbowColors.length;
+    rainbowTextHTML += `<span style="color: ${rainbowColors[colorNumber]}">${letter}</span>`;
+  });
+  HTMLelement.innerHTML = "";
+  return rainbowTextHTML;
+};
 
 // Eraser button
 btnEraser.addEventListener("click", function () {
