@@ -77,12 +77,16 @@ const rainbowColor = function () {
 };
 
 const shadeTile = function (e) {
+  if (e.target.classList.contains("sketch-container")) return;
   if (mode === "default") {
     e.target.style.backgroundColor = "mediumslateblue";
+    e.target.style.boxShadow = `0px 0px 20px 2px mediumslateblue`;
   } else if (mode === "rainbow") {
     e.target.style.backgroundColor = `${rainbowColor()}`;
+    e.target.style.boxShadow = `0px 0px 10px 2px ${rainbowColor()}`;
   } else if (mode === "eraser") {
     e.target.style.backgroundColor = "silver";
+    e.target.style.boxShadow = "";
   }
 };
 
