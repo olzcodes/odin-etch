@@ -21,7 +21,6 @@ const rainbowColors = [
   "#A0C4FF",
   "#BDB2FF",
   "#FFC6FF",
-  "#FFFFFC",
 ];
 let drawingCounter = 0;
 
@@ -143,6 +142,7 @@ btnRainbow.addEventListener("click", function () {
   btnEraser.classList.remove("on");
   sketchContainer.classList.remove("eraser-mode");
   mode === "rainbow" ? (mode = "default") : (mode = "rainbow");
+  mode === "eraser" ? (mode = "default") : null;
 });
 
 // Eraser button
@@ -150,9 +150,10 @@ btnEraser.addEventListener("click", function () {
   btnEraser.classList.toggle("on");
   btnRainbow.classList.remove("on");
   btnGlow.classList.remove("on");
-  glowMode === true ? (glowMode = false) : null;
+  h1.classList.remove("glowMode");
   sketchContainer.classList.toggle("eraser-mode");
   mode !== "eraser" ? (mode = "eraser") : (mode = "default");
+  glowMode === true ? (glowMode = false) : null;
 });
 
 // Glow mode button
@@ -161,5 +162,6 @@ btnGlow.addEventListener("click", function () {
   btnGlow.classList.toggle("on");
   btnEraser.classList.remove("on");
   h1.classList.toggle("glowMode");
+  mode === "eraser" ? (mode = "default") : null;
   glowMode === false ? (glowMode = true) : (glowMode = false);
 });
