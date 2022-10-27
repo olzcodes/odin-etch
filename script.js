@@ -169,13 +169,13 @@ btnEraser.addEventListener("click", function () {
   btnRainbow.classList.remove("on");
   btnGlow.classList.remove("on");
   h1.classList.remove("glowMode");
+  h1.innerHTML = "miniSKETCH";
   sketchContainer.classList.toggle("eraser-mode");
   mode !== "eraser" ? (mode = "eraser") : (mode = "default");
   glowMode === true ? (glowMode = false) : null;
 });
 
 // Glow mode button
-
 btnGlow.addEventListener("click", function () {
   btnGlow.classList.toggle("on");
   btnEraser.classList.remove("on");
