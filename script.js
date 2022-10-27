@@ -1,4 +1,3 @@
-const body = document.querySelector("body");
 const h1 = document.querySelector("h1");
 const sketchContainer = document.querySelector(".sketch-container");
 const rangeSlider = document.querySelector(".range-slider");
@@ -82,9 +81,9 @@ const shadeTile = function (e) {
   drawingCounter += 1;
   if (e.target.classList.contains("sketch-container")) return;
   if (mode === "default") {
-    e.target.style.backgroundColor = "mediumslateblue";
+    e.target.style.backgroundColor = "darkgrey";
     if (glowMode) {
-      e.target.style.boxShadow = `0px 0px 20px 2px mediumslateblue`;
+      e.target.style.boxShadow = `0px 0px 30px 2px grey`;
     }
   } else if (mode === "rainbow") {
     e.target.style.backgroundColor = `${rainbowColor()}`;
