@@ -11,6 +11,7 @@ let canvasBlank = true;
 let canvasSize = 32;
 let mode = "default";
 let glowMode = false;
+let drawingCounter = 0;
 const rainbowColors = [
   "#FFADAD",
   "#FFD6A5",
@@ -21,7 +22,6 @@ const rainbowColors = [
   "#BDB2FF",
   "#FFC6FF",
 ];
-let drawingCounter = 0;
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
@@ -40,15 +40,17 @@ const generateTiles = function (input) {
   canvasBlank = true;
 };
 
-const deleteTiles = function () {
-  sketchContainer.innerHTML = ``;
-};
-
 const showSliderValue = function () {
   sliderValue.textContent = `${canvasSize} x ${canvasSize}`;
 };
 
 showSliderValue();
+
+generateTiles(canvasSize);
+
+const deleteTiles = function () {
+  sketchContainer.innerHTML = ``;
+};
 
 const changeResolution = function () {
   if (!canvasBlank) {
@@ -63,14 +65,6 @@ const changeResolution = function () {
   deleteTiles();
   generateTiles(canvasSize);
 };
-
-sliderControl.addEventListener("click", changeResolution);
-sliderControl.addEventListener("touchstart", changeResolution);
-sliderControl.addEventListener("touchend", changeResolution);
-
-generateTiles(canvasSize);
-
-// Drawing functions
 
 const rainbowColor = function () {
   let colorNumber = drawingCounter % rainbowColors.length;
@@ -106,37 +100,24 @@ const deactivateBrush = function () {
   sketchContainer.removeEventListener("mouseover", shadeTile);
 };
 
-// Event Listeners
-
-sketchContainer.addEventListener("mousedown", activateBrush);
-document.addEventListener("mouseup", deactivateBrush);
-
-sketchContainer.addEventListener("mouseover", function (e) {
+const changeCursorStyle = function () {
   if (mode === "eraser") {
     sketchContainer.style.cursor = "crosshair";
   } else {
     sketchContainer.style.cursor = "cell";
   }
-});
+};
 
-// For touch screens
-sketchContainer.addEventListener("touchstart", shadeTile);
-sketchContainer.addEventListener("touchend", shadeTile);
-
-// Buttons
-
-// Reset button
-btnReset.addEventListener("click", function () {
+const btnResetHandler = function () {
   if (!canvasBlank) {
     const reset = confirm("This will clear the canvas. Continue?");
     if (!reset) return;
   }
   deleteTiles();
   generateTiles(canvasSize);
-});
+};
 
-// Rainbow button
-btnRainbow.addEventListener("click", function () {
+const btnRainbowHandler = function () {
   btnRainbow.classList.toggle("on");
   btnEraser.classList.remove("on");
   sketchContainer.classList.remove("eraser-mode");
@@ -147,7 +128,7 @@ btnRainbow.addEventListener("click", function () {
     mode = "rainbow";
     h1.innerHTML = rainbowText(h1);
   }
-});
+};
 
 const rainbowText = function (HTMLelement) {
   plainText = HTMLelement.textContent;
@@ -163,8 +144,7 @@ const rainbowText = function (HTMLelement) {
   return rainbowTextHTML;
 };
 
-// Eraser button
-btnEraser.addEventListener("click", function () {
+const btnEraserHandler = function () {
   btnEraser.classList.toggle("on");
   btnRainbow.classList.remove("on");
   btnGlow.classList.remove("on");
@@ -173,13 +153,33 @@ btnEraser.addEventListener("click", function () {
   sketchContainer.classList.toggle("eraser-mode");
   mode !== "eraser" ? (mode = "eraser") : (mode = "default");
   glowMode === true ? (glowMode = false) : null;
-});
+};
 
-// Glow button
-btnGlow.addEventListener("click", function () {
+const btnGlowHandler = function () {
   btnGlow.classList.toggle("on");
   btnEraser.classList.remove("on");
   h1.classList.toggle("glowMode");
   mode === "eraser" ? (mode = "default") : null;
   glowMode === false ? (glowMode = true) : (glowMode = false);
-});
+};
+
+// Event Listeners - Canvas
+
+sketchContainer.addEventListener("mousedown", activateBrush);
+document.addEventListener("mouseup", deactivateBrush);
+sketchContainer.addEventListener("mouseover", changeCursorStyle);
+
+// Event Listeners - Buttons
+
+sliderControl.addEventListener("click", changeResolution);
+btnReset.addEventListener("click", btnResetHandler);
+btnRainbow.addEventListener("click", btnRainbowHandler);
+btnEraser.addEventListener("click", btnEraserHandler);
+btnGlow.addEventListener("click", btnGlowHandler);
+
+// Event Listener - For touch screens
+
+sketchContainer.addEventListener("touchstart", shadeTile);
+sketchContainer.addEventListener("touchend", shadeTile);
+sliderControl.addEventListener("touchstart", changeResolution);
+sliderControl.addEventListener("touchend", changeResolution);
