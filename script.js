@@ -175,7 +175,7 @@ btnEraser.addEventListener("click", function () {
   glowMode === true ? (glowMode = false) : null;
 });
 
-// Glow mode button
+// Glow button
 btnGlow.addEventListener("click", function () {
   btnGlow.classList.toggle("on");
   btnEraser.classList.remove("on");
