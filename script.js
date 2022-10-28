@@ -118,6 +118,25 @@ const btnResetHandler = function () {
   generateTiles(canvasSize);
 };
 
+const btnEraserHandler = function () {
+  btnEraser.classList.toggle("on");
+  btnRainbow.classList.remove("on");
+  btnGlow.classList.remove("on");
+  h1.classList.remove("glowMode");
+  h1.innerHTML = "miniSKETCH";
+  sketchContainer.classList.toggle("eraser-mode");
+  mode !== "eraser" ? (mode = "eraser") : (mode = "default");
+  glowMode === true ? (glowMode = false) : null;
+};
+
+const btnGlowHandler = function () {
+  btnGlow.classList.toggle("on");
+  btnEraser.classList.remove("on");
+  h1.classList.toggle("glowMode");
+  mode === "eraser" ? (mode = "default") : null;
+  glowMode === false ? (glowMode = true) : (glowMode = false);
+};
+
 const btnRainbowHandler = function () {
   btnRainbow.classList.toggle("on");
   btnEraser.classList.remove("on");
@@ -143,25 +162,6 @@ const rainbowText = function (HTMLelement) {
   });
   HTMLelement.innerHTML = "";
   return rainbowTextHTML;
-};
-
-const btnEraserHandler = function () {
-  btnEraser.classList.toggle("on");
-  btnRainbow.classList.remove("on");
-  btnGlow.classList.remove("on");
-  h1.classList.remove("glowMode");
-  h1.innerHTML = "miniSKETCH";
-  sketchContainer.classList.toggle("eraser-mode");
-  mode !== "eraser" ? (mode = "eraser") : (mode = "default");
-  glowMode === true ? (glowMode = false) : null;
-};
-
-const btnGlowHandler = function () {
-  btnGlow.classList.toggle("on");
-  btnEraser.classList.remove("on");
-  h1.classList.toggle("glowMode");
-  mode === "eraser" ? (mode = "default") : null;
-  glowMode === false ? (glowMode = true) : (glowMode = false);
 };
 
 // Event Listeners - Canvas
