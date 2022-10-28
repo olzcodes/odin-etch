@@ -5,6 +5,7 @@ const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
 const btnReset = document.querySelector(".button.reset");
 const colorPicker = document.querySelector(".color-picker");
+const btnShading = document.querySelector(".button.shading");
 const btnEraser = document.querySelector(".button.eraser");
 const btnGlow = document.querySelector(".button.glow");
 const btnRainbow = document.querySelector(".button.rainbow");
@@ -118,10 +119,40 @@ const btnResetHandler = function () {
   generateTiles(canvasSize);
 };
 
+const btnShadingHandler = function () {
+  btnShading.classList.toggle("on");
+  btnEraser.classList.remove("on");
+  btnGlow.classList.remove("on");
+  btnRainbow.classList.remove("on");
+  sketchContainer.classList.remove("eraser-mode");
+  if (mode === "shading") {
+    mode = "default";
+    h1.innerHTML = "miniSKETCH";
+  } else {
+    mode = "shading";
+    h1.innerHTML = shadingText(h1);
+    h1.classList.remove("glowMode");
+  }
+};
+
+const shadingText = function (HTMLelement) {
+  const plainText = HTMLelement.textContent;
+  const array = plainText.split("");
+  let RGBalpha = 1;
+  let shadingTextHTML = "";
+  array.forEach((letter) => {
+    RGBalpha -= 0.08;
+    shadingTextHTML += `<span style="color: rgba(255, 255, 255, ${RGBalpha})">${letter}</span>`;
+    console.log(shadingTextHTML);
+  });
+  return shadingTextHTML;
+};
+
 const btnEraserHandler = function () {
   btnEraser.classList.toggle("on");
   btnRainbow.classList.remove("on");
   btnGlow.classList.remove("on");
+  btnShading.classList.remove("on");
   h1.classList.remove("glowMode");
   h1.innerHTML = "miniSKETCH";
   sketchContainer.classList.toggle("eraser-mode");
@@ -132,6 +163,7 @@ const btnEraserHandler = function () {
 const btnGlowHandler = function () {
   btnGlow.classList.toggle("on");
   btnEraser.classList.remove("on");
+  btnShading.classList.remove("on");
   h1.classList.toggle("glowMode");
   mode === "eraser" ? (mode = "default") : null;
   glowMode === false ? (glowMode = true) : (glowMode = false);
@@ -140,6 +172,7 @@ const btnGlowHandler = function () {
 const btnRainbowHandler = function () {
   btnRainbow.classList.toggle("on");
   btnEraser.classList.remove("on");
+  btnShading.classList.remove("on");
   sketchContainer.classList.remove("eraser-mode");
   if (mode === "rainbow") {
     mode = "default";
@@ -151,7 +184,7 @@ const btnRainbowHandler = function () {
 };
 
 const rainbowText = function (HTMLelement) {
-  plainText = HTMLelement.textContent;
+  const plainText = HTMLelement.textContent;
   const array = plainText.split("");
   let letterNumber = 0;
   let rainbowTextHTML = "";
@@ -174,6 +207,7 @@ sketchContainer.addEventListener("mouseover", changeCursorStyle);
 
 sliderControl.addEventListener("click", changeResolution);
 btnReset.addEventListener("click", btnResetHandler);
+btnShading.addEventListener("click", btnShadingHandler);
 btnEraser.addEventListener("click", btnEraserHandler);
 btnGlow.addEventListener("click", btnGlowHandler);
 btnRainbow.addEventListener("click", btnRainbowHandler);
