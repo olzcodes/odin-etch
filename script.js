@@ -174,9 +174,9 @@ sketchContainer.addEventListener("mouseover", changeCursorStyle);
 
 sliderControl.addEventListener("click", changeResolution);
 btnReset.addEventListener("click", btnResetHandler);
-btnRainbow.addEventListener("click", btnRainbowHandler);
 btnEraser.addEventListener("click", btnEraserHandler);
 btnGlow.addEventListener("click", btnGlowHandler);
+btnRainbow.addEventListener("click", btnRainbowHandler);
 
 // Event Listener - For touch screens
 
