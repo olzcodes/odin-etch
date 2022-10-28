@@ -89,6 +89,14 @@ h1.glowMode {
   margin: 1em;
 }
 
+.options-menu .color-picker {
+  height: 3em;
+  width: 6em;
+  border: 2px solid black;
+  border-radius: 3px;
+  margin: 1em;
+}
+
 .options-menu button.on {
   background-color: plum;
   color: black;
