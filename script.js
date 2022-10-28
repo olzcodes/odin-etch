@@ -7,6 +7,7 @@ const btnReset = document.querySelector(".button.reset");
 const btnRainbow = document.querySelector(".button.rainbow");
 const btnEraser = document.querySelector(".button.eraser");
 const btnGlow = document.querySelector(".button.glow");
+const colorPicker = document.querySelector(".color-picker");
 let canvasBlank = true;
 let canvasSize = 32;
 let mode = "default";
@@ -75,9 +76,9 @@ const shadeTile = function (e) {
   drawingCounter += 1;
   if (e.target.classList.contains("sketch-container")) return;
   if (mode === "default") {
-    e.target.style.backgroundColor = "darkgrey";
+    e.target.style.backgroundColor = colorPicker.value;
     if (glowMode) {
-      e.target.style.boxShadow = `0px 0px 30px 2px grey`;
+      e.target.style.boxShadow = `0px 0px 30px 2px ${colorPicker.value}`;
     }
   } else if (mode === "rainbow") {
     e.target.style.backgroundColor = `${rainbowColor()}`;
