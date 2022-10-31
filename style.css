@@ -28,6 +28,11 @@ h1 {
   margin: 10px;
 }
 
+h1.eraserMode {
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: darkslateblue;
+}
+
 h1.glowMode {
   text-shadow: 0px 0px 10px pink;
 }
