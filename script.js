@@ -89,7 +89,29 @@ const shadeTile = function (e) {
   } else if (mode === "eraser") {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
+  } else if (mode === "shading") {
+    let RGBalpha = 0.15;
+    if (!e.target.getAttribute("RGBalpha")) {
+      e.target.setAttribute("RGBalpha", `${RGBalpha}`);
+    } else {
+      RGBalpha = parseFloat(e.target.getAttribute("RGBalpha"), 10);
+      RGBalpha += 0.15;
+      e.target.setAttribute("RGBalpha", `${RGBalpha}`);
+    }
+    e.target.style.backgroundColor = `rgba(${hexToRGB(colorPicker.value)[0]},
+    ${hexToRGB(colorPicker.value)[1]},
+    ${hexToRGB(colorPicker.value)[2]},
+    ${RGBalpha})`;
   }
+};
+
+// Source: https://stackoverflow.com/a/14101452/18526828
+const hexToRGB = function (hex) {
+  return [
+    ("0x" + hex[1] + hex[2]) | 0,
+    ("0x" + hex[3] + hex[4]) | 0,
+    ("0x" + hex[5] + hex[6]) | 0,
+  ];
 };
 
 const activateBrush = function (e) {
@@ -133,6 +155,7 @@ const btnShadingHandler = function () {
     h1.innerHTML = shadingText(h1);
     h1.classList.remove("glowMode");
   }
+  glowMode === true ? (glowMode = false) : null;
 };
 
 const shadingText = function (HTMLelement) {
@@ -143,7 +166,6 @@ const shadingText = function (HTMLelement) {
   array.forEach((letter) => {
     RGBalpha -= 0.08;
     shadingTextHTML += `<span style="color: rgba(255, 255, 255, ${RGBalpha})">${letter}</span>`;
-    console.log(shadingTextHTML);
   });
   return shadingTextHTML;
 };
@@ -166,7 +188,13 @@ const btnGlowHandler = function () {
   btnShading.classList.remove("on");
   h1.classList.toggle("glowMode");
   mode === "eraser" ? (mode = "default") : null;
-  glowMode === false ? (glowMode = true) : (glowMode = false);
+  mode === "shading" ? (mode = "default") : null;
+  if (glowMode === true) {
+    glowMode = false;
+  } else {
+    glowMode = true;
+    if (mode === "default") h1.innerHTML = "miniSKETCH";
+  }
 };
 
 const btnRainbowHandler = function () {
