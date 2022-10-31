@@ -10,8 +10,11 @@ https://www.theodinproject.com/lessons/foundations-etch-a-sketch
 - [DONE] Add option to change canvas size
 - [DONE] Add option to reset canvas
 - [DONE] Make layout responsive
-- Add rainbow paintbrush
-- Add eraser
+- [DONE] Add rainbow paintbrush
+- [DONE] Add eraser
+- [DONE] Add glow mode
+- [DONE] Add shading mode (progressive darkening)
+- Improve performance
 
 ## What I learnt from this project
 
