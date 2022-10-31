@@ -29,8 +29,8 @@ h1 {
 }
 
 h1.eraserMode {
-  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: darkslateblue;
+  color: darkslateblue;
+  -webkit-text-stroke: 1px white;
 }
 
 h1.glowMode {
