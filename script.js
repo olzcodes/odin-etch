@@ -107,6 +107,8 @@ const shadeTile = function (e) {
   } else if (mode === "eraser") {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
+    e.target.dataset.hexColor = 0;
+    e.target.dataset.hexOpacityLevel = 0;
   } else if (mode === "shading") {
     if (!e.target.dataset.hexColor) {
       e.target.dataset.hexOpacityLevel = 1;
@@ -130,7 +132,6 @@ const shadeTile = function (e) {
         e.target.style.backgroundColor = e.target.dataset.hexColor;
       }
     }
-    e.target.style.boxShadow = "";
   }
 };
 
