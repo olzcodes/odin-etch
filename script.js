@@ -97,12 +97,12 @@ const shadeTile = function (e) {
   if (mode === "default") {
     e.target.style.backgroundColor = colorPicker.value;
     if (glowMode) {
-      e.target.style.boxShadow = `0px 0px 30px 2px ${colorPicker.value}`;
+      e.target.style.boxShadow = `0px 0px 30px 6px ${colorPicker.value}`;
     }
   } else if (mode === "rainbow") {
     e.target.style.backgroundColor = `${rainbowColor()}`;
     if (glowMode) {
-      e.target.style.boxShadow = `0px 0px 10px 2px ${rainbowColor()}`;
+      e.target.style.boxShadow = `0px 0px 30px 6px ${rainbowColor()}`;
     }
   } else if (mode === "eraser") {
     e.target.style.backgroundColor = "silver";
