@@ -14,6 +14,12 @@ let canvasSize = 32;
 let mode = "default";
 let glowMode = false;
 let drawingCounter = 0;
+let gridStyle = 0;
+const gridStyles = {
+  0: "1px solid lightgrey",
+  1: "1px dashed lightgrey",
+  2: "none",
+};
 const rainbowColors = [
   "#FFADAD",
   "#FFD6A5",
@@ -70,6 +76,15 @@ generateTiles(canvasSize);
 
 const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
+};
+
+const toggleGrid = function () {
+  gridStyle++;
+  if (gridStyle > 2) gridStyle = 0;
+  const tiles = document.querySelectorAll(".tile");
+  tiles.forEach((tile) => {
+    tile.style.border = `${gridStyles[gridStyle]}`;
+  });
 };
 
 const changeResolution = function () {
@@ -259,6 +274,7 @@ sketchContainer.addEventListener("mouseover", changeCursorStyle);
 
 // Event Listeners - Buttons
 
+h1.addEventListener("click", toggleGrid);
 sliderControl.addEventListener("click", changeResolution);
 btnReset.addEventListener("click", btnResetHandler);
 btnShading.addEventListener("click", btnShadingHandler);
