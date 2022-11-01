@@ -191,7 +191,7 @@ const btnEraserHandler = function () {
   h1.classList.remove("glowMode");
   h1.innerHTML = "miniSKETCH";
   h1.classList.toggle("eraserMode");
-  sketchContainer.classList.toggle("eraser-mode");
+  sketchContainer.classList.toggle("eraser-active");
   mode !== "eraser" ? (mode = "eraser") : (mode = "default");
   glowMode === true ? (glowMode = false) : null;
 };
@@ -200,7 +200,7 @@ const btnShadingHandler = function () {
   btnShading.classList.toggle("on");
   btnEraser.classList.remove("on");
   btnRainbow.classList.remove("on");
-  sketchContainer.classList.remove("eraser-mode");
+  sketchContainer.classList.remove("eraser-active");
   if (mode === "shading") {
     mode = "default";
     h1.innerHTML = "miniSKETCH";
@@ -242,7 +242,7 @@ const btnRainbowHandler = function () {
   btnEraser.classList.remove("on");
   btnShading.classList.remove("on");
   h1.classList.remove("eraserMode");
-  sketchContainer.classList.remove("eraser-mode");
+  sketchContainer.classList.remove("eraser-active");
   if (mode === "rainbow") {
     mode = "default";
     h1.innerHTML = "miniSKETCH";
