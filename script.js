@@ -117,6 +117,9 @@ const shadeTile = function (e) {
         colorPicker.value + hexOpacityLevels[e.target.dataset.hexOpacityLevel];
 
       e.target.style.backgroundColor = e.target.dataset.hexColor;
+      if (glowMode) {
+        e.target.style.boxShadow = `0px 0px 30px 0px ${colorPicker.value}`;
+      }
     } else {
       if (e.target.dataset.hexColor.slice(0, 7) !== colorPicker.value) {
         e.target.dataset.hexOpacityLevel = 1;
@@ -130,6 +133,9 @@ const shadeTile = function (e) {
           hexOpacityLevels[e.target.dataset.hexOpacityLevel];
 
         e.target.style.backgroundColor = e.target.dataset.hexColor;
+        if (glowMode) {
+          e.target.style.boxShadow = `0px 0px 30px 0px ${colorPicker.value}`;
+        }
       }
     }
   }
@@ -178,7 +184,7 @@ const btnEraserHandler = function () {
 const btnShadingHandler = function () {
   btnShading.classList.toggle("on");
   btnEraser.classList.remove("on");
-  btnGlow.classList.remove("on");
+  // btnGlow.classList.remove("on");
   btnRainbow.classList.remove("on");
   sketchContainer.classList.remove("eraser-mode");
   if (mode === "shading") {
@@ -187,10 +193,10 @@ const btnShadingHandler = function () {
   } else {
     mode = "shading";
     h1.innerHTML = shadingText(h1);
-    h1.classList.remove("glowMode");
+    // h1.classList.remove("glowMode");
     h1.classList.remove("eraserMode");
   }
-  glowMode === true ? (glowMode = false) : null;
+  // glowMode === true ? (glowMode = false) : null;
 };
 
 const shadingText = function (HTMLelement) {
@@ -208,11 +214,11 @@ const shadingText = function (HTMLelement) {
 const btnGlowHandler = function () {
   btnGlow.classList.toggle("on");
   btnEraser.classList.remove("on");
-  btnShading.classList.remove("on");
+  // btnShading.classList.remove("on");
   h1.classList.toggle("glowMode");
   h1.classList.remove("eraserMode");
   mode === "eraser" ? (mode = "default") : null;
-  mode === "shading" ? (mode = "default") : null;
+  // mode === "shading" ? (mode = "default") : null;
   if (glowMode === true) {
     glowMode = false;
   } else {
