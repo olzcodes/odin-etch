@@ -24,6 +24,24 @@ const rainbowColors = [
   "#BDB2FF",
   "#FFC6FF",
 ];
+const hexOpacityLevels = [
+  "00",
+  "11",
+  "22",
+  "33",
+  "44",
+  "55",
+  "66",
+  "77",
+  "88",
+  "99",
+  "AA",
+  "BB",
+  "CC",
+  "DD",
+  "EE",
+  "FF",
+];
 
 const generateTiles = function (input) {
   for (i = 0; i < input; i++) {
@@ -90,28 +108,23 @@ const shadeTile = function (e) {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
   } else if (mode === "shading") {
-    let RGBalpha = 0.15;
-    if (!e.target.getAttribute("RGBalpha")) {
-      e.target.setAttribute("RGBalpha", `${RGBalpha}`);
+    let hexOpacityLevel = 1;
+    if (!e.target.dataset.hexColor) {
+      e.target.style.backgroundColor =
+        colorPicker.value + hexOpacityLevels[hexOpacityLevel];
+      e.target.dataset.hexColor =
+        colorPicker.value + hexOpacityLevels[hexOpacityLevel];
+      e.target.dataset.hexOpacityLevel = hexOpacityLevel;
     } else {
-      RGBalpha = parseFloat(e.target.getAttribute("RGBalpha"), 10);
-      RGBalpha += 0.15;
-      e.target.setAttribute("RGBalpha", `${RGBalpha}`);
+      if (e.target.dataset.hexOpacityLevel <= 16) {
+        e.target.dataset.hexOpacityLevel =
+          parseInt(e.target.dataset.hexOpacityLevel) + 1;
+        e.target.style.backgroundColor =
+          colorPicker.value +
+          hexOpacityLevels[e.target.dataset.hexOpacityLevel];
+      }
     }
-    e.target.style.backgroundColor = `rgba(${hexToRGB(colorPicker.value)[0]},
-    ${hexToRGB(colorPicker.value)[1]},
-    ${hexToRGB(colorPicker.value)[2]},
-    ${RGBalpha})`;
   }
-};
-
-// Source: https://stackoverflow.com/a/14101452/18526828
-const hexToRGB = function (hex) {
-  return [
-    ("0x" + hex[1] + hex[2]) | 0,
-    ("0x" + hex[3] + hex[4]) | 0,
-    ("0x" + hex[5] + hex[6]) | 0,
-  ];
 };
 
 const activateBrush = function (e) {
