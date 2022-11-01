@@ -59,7 +59,7 @@ h1.glowMode {
   border: 1px solid lightgrey;
 }
 
-.eraser-mode > div > .tile:hover {
+.eraser-active > div > .tile:hover {
   border: 2px solid white;
 }
 
