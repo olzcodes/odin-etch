@@ -108,22 +108,29 @@ const shadeTile = function (e) {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
   } else if (mode === "shading") {
-    let hexOpacityLevel = 1;
     if (!e.target.dataset.hexColor) {
-      e.target.style.backgroundColor =
-        colorPicker.value + hexOpacityLevels[hexOpacityLevel];
+      e.target.dataset.hexOpacityLevel = 1;
+
       e.target.dataset.hexColor =
-        colorPicker.value + hexOpacityLevels[hexOpacityLevel];
-      e.target.dataset.hexOpacityLevel = hexOpacityLevel;
+        colorPicker.value + hexOpacityLevels[e.target.dataset.hexOpacityLevel];
+
+      e.target.style.backgroundColor = e.target.dataset.hexColor;
     } else {
-      if (e.target.dataset.hexOpacityLevel <= 16) {
+      if (e.target.dataset.hexColor.slice(0, 7) !== colorPicker.value) {
+        e.target.dataset.hexOpacityLevel = 1;
+      }
+      if (e.target.dataset.hexOpacityLevel < 15) {
         e.target.dataset.hexOpacityLevel =
           parseInt(e.target.dataset.hexOpacityLevel) + 1;
-        e.target.style.backgroundColor =
+
+        e.target.dataset.hexColor =
           colorPicker.value +
           hexOpacityLevels[e.target.dataset.hexOpacityLevel];
+
+        e.target.style.backgroundColor = e.target.dataset.hexColor;
       }
     }
+    e.target.style.boxShadow = "";
   }
 };
 
