@@ -78,7 +78,7 @@ const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
 };
 
-const toggleGrid = function () {
+const toggleGridStyle = function () {
   gridStyle++;
   if (gridStyle > 2) gridStyle = 0;
   const tiles = document.querySelectorAll(".tile");
@@ -274,7 +274,7 @@ sketchContainer.addEventListener("mouseover", changeCursorStyle);
 
 // Event Listeners - Buttons
 
-h1.addEventListener("click", toggleGrid);
+h1.addEventListener("click", toggleGridStyle);
 sliderControl.addEventListener("click", changeResolution);
 btnReset.addEventListener("click", btnResetHandler);
 btnShading.addEventListener("click", btnShadingHandler);
