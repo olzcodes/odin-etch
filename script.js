@@ -13,7 +13,7 @@ let canvasBlank = true;
 let canvasSize = 32;
 let mode = "default";
 let glowMode = false;
-let drawingCounter = 0;
+let brushCounter = 0;
 let gridStyle = 0;
 const gridStyles = {
   0: "1px solid lightgrey",
@@ -102,12 +102,11 @@ const changeResolution = function () {
 };
 
 const rainbowColor = function () {
-  let colorNumber = drawingCounter % rainbowColors.length;
+  let colorNumber = brushCounter % rainbowColors.length;
   return rainbowColors[colorNumber];
 };
 
-const shadeTile = function (e) {
-  drawingCounter += 1;
+const applyBrush = function (e) {
   if (e.target.classList.contains("sketch-container")) return;
   if (mode === "default") {
     e.target.style.backgroundColor = colorPicker.value;
@@ -115,6 +114,7 @@ const shadeTile = function (e) {
       e.target.style.boxShadow = `0px 0px 30px 6px ${colorPicker.value}`;
     }
   } else if (mode === "rainbow") {
+    brushCounter += 1;
     e.target.style.backgroundColor = `${rainbowColor()}`;
     if (glowMode) {
       e.target.style.boxShadow = `0px 0px 30px 6px ${rainbowColor()}`;
@@ -157,13 +157,13 @@ const shadeTile = function (e) {
 };
 
 const activateBrush = function (e) {
-  shadeTile(e);
-  sketchContainer.addEventListener("mouseover", shadeTile);
+  applyBrush(e);
+  sketchContainer.addEventListener("mouseover", applyBrush);
   canvasBlank = false;
 };
 
 const deactivateBrush = function () {
-  sketchContainer.removeEventListener("mouseover", shadeTile);
+  sketchContainer.removeEventListener("mouseover", applyBrush);
 };
 
 const changeCursorStyle = function () {
@@ -284,7 +284,7 @@ btnRainbow.addEventListener("click", btnRainbowHandler);
 
 // Event Listener - For touch screens
 
-sketchContainer.addEventListener("touchstart", shadeTile);
-sketchContainer.addEventListener("touchend", shadeTile);
+sketchContainer.addEventListener("touchstart", applyBrush);
+sketchContainer.addEventListener("touchend", applyBrush);
 sliderControl.addEventListener("touchstart", changeResolution);
 sliderControl.addEventListener("touchend", changeResolution);
