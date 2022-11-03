@@ -4,7 +4,7 @@ const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
 const btnReset = document.querySelector(".button.reset");
-const colorPicker = document.querySelector(".color-picker");
+const btnColorPicker = document.querySelector(".color-picker");
 const btnShading = document.querySelector(".button.shading");
 const btnEraser = document.querySelector(".button.eraser");
 const btnGlow = document.querySelector(".button.glow");
@@ -108,50 +108,53 @@ const rainbowColor = function () {
 
 const applyBrush = function (e) {
   if (e.target.classList.contains("sketch-container")) return;
+
   if (mode === "default") {
-    e.target.style.backgroundColor = colorPicker.value;
+    e.target.dataset.hexOpacityLevel = 15;
+    e.target.dataset.hexColor = btnColorPicker.value;
+    e.target.style.backgroundColor = e.target.dataset.hexColor;
     if (glowMode) {
-      e.target.style.boxShadow = `0px 0px 30px 6px ${colorPicker.value}`;
+      e.target.style.boxShadow = `0px 0px 30px 6px ${btnColorPicker.value}`;
     }
   } else if (mode === "rainbow") {
     brushCounter += 1;
-    e.target.style.backgroundColor = `${rainbowColor()}`;
+    e.target.dataset.hexOpacityLevel = 15;
+    e.target.dataset.hexColor = `${rainbowColor()}`;
+    e.target.style.backgroundColor = e.target.dataset.hexColor;
     if (glowMode) {
       e.target.style.boxShadow = `0px 0px 30px 6px ${rainbowColor()}`;
     }
   } else if (mode === "eraser") {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
-    e.target.dataset.hexColor = 0;
     e.target.dataset.hexOpacityLevel = 0;
+    e.target.dataset.hexColor = 0;
   } else if (mode === "shading") {
-    if (!e.target.dataset.hexColor) {
+    if (!e.target.dataset.hexColor || e.target.dataset.hexColor === "0") {
       e.target.dataset.hexOpacityLevel = 1;
 
       e.target.dataset.hexColor =
-        colorPicker.value + hexOpacityLevels[e.target.dataset.hexOpacityLevel];
+        btnColorPicker.value +
+        hexOpacityLevels[e.target.dataset.hexOpacityLevel];
 
       e.target.style.backgroundColor = e.target.dataset.hexColor;
-      if (glowMode) {
-        e.target.style.boxShadow = `0px 0px 30px 0px ${colorPicker.value}`;
-      }
     } else {
-      if (e.target.dataset.hexColor.slice(0, 7) !== colorPicker.value) {
-        e.target.dataset.hexOpacityLevel = 1;
+      if (e.target.dataset.hexColor.slice(0, 7) !== btnColorPicker.value) {
+        e.target.dataset.hexOpacityLevel = 5;
       }
       if (e.target.dataset.hexOpacityLevel < 15) {
         e.target.dataset.hexOpacityLevel =
           parseInt(e.target.dataset.hexOpacityLevel) + 1;
 
         e.target.dataset.hexColor =
-          colorPicker.value +
+          btnColorPicker.value +
           hexOpacityLevels[e.target.dataset.hexOpacityLevel];
 
         e.target.style.backgroundColor = e.target.dataset.hexColor;
-        if (glowMode) {
-          e.target.style.boxShadow = `0px 0px 30px 0px ${colorPicker.value}`;
-        }
       }
+    }
+    if (glowMode) {
+      e.target.style.boxShadow = `0px 0px 30px 0px ${btnColorPicker.value}`;
     }
   }
 };
