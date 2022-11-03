@@ -1,6 +1,8 @@
 # odin-etch
 
-The aim of this project is to build a browser version of an Etch-A-Sketch drawing toy.
+**LIVE: https://olzcodes.github.io/odin-etch/**
+
+The aim of this project was to build a browser version of an Etch-A-Sketch drawing toy.
 
 https://www.theodinproject.com/lessons/foundations-etch-a-sketch
 
