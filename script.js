@@ -66,6 +66,10 @@ const generateTiles = function (input) {
   canvasBlank = true;
 };
 
+window.onresize = function () {
+  location.reload();
+};
+
 const showSliderValue = function () {
   sliderValue.textContent = `${canvasSize} x ${canvasSize}`;
 };
