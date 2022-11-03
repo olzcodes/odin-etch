@@ -66,8 +66,13 @@ const generateTiles = function (input) {
   canvasBlank = true;
 };
 
-window.onresize = function () {
-  location.reload();
+const resizeTiles = function () {
+  let sketchContainerWidth = sketchContainer.clientWidth;
+  const tile = document.querySelectorAll(".tile");
+  tile.forEach((tile) => {
+    tile.style.height = `${sketchContainerWidth / canvasSize}px`;
+    tile.style.width = `${sketchContainerWidth / canvasSize}px`;
+  });
 };
 
 const showSliderValue = function () {
@@ -272,6 +277,10 @@ const rainbowText = function (HTMLelement) {
   HTMLelement.innerHTML = "";
   return rainbowTextHTML;
 };
+
+// Event Listener - Window resizing
+
+window.addEventListener("resize", resizeTiles);
 
 // Event Listeners - Canvas
 
