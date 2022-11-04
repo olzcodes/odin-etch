@@ -49,18 +49,18 @@ const hexOpacityLevels = [
   "FF",
 ];
 
-const generateTiles = function (input) {
-  for (i = 0; i < input; i++) {
+const generateTiles = function (canvasSize) {
+  for (i = 0; i < canvasSize; i++) {
     sketchContainer.innerHTML += `<div class="column-${i + 1}"></div>`;
     let column = document.querySelector(`.column-${i + 1}`);
     let sketchContainerWidth = sketchContainer.clientWidth;
-    column.style.width = `${sketchContainerWidth / input}px`;
-    for (j = 0; j < input; j++) {
+    column.style.width = `${sketchContainerWidth / canvasSize}px`;
+    for (j = 0; j < canvasSize; j++) {
       column.innerHTML += `<div class="tile column-${i + 1} row-${
         j + 1
       }"></div>`;
       let tile = document.querySelector(`.tile.column-${i + 1}.row-${j + 1}`);
-      tile.style.height = `${sketchContainerWidth / input}px`;
+      tile.style.height = `${sketchContainerWidth / canvasSize}px`;
     }
   }
   canvasBlank = true;
