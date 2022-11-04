@@ -11,7 +11,7 @@ const btnGlow = document.querySelector(".button.glow");
 const btnRainbow = document.querySelector(".button.rainbow");
 let canvasBlank = true;
 let canvasSize = 32;
-let mode = "default";
+let brushMode = "default";
 let glowMode = false;
 let brushCounter = 0;
 let gridStyle = 0;
@@ -112,14 +112,14 @@ const rainbowColor = function () {
 const applyBrush = function (e) {
   if (e.target.classList.contains("sketch-container")) return;
 
-  if (mode === "default") {
+  if (brushMode === "default") {
     e.target.dataset.hexOpacityLevel = 15;
     e.target.dataset.hexColor = btnColorPicker.value;
     e.target.style.backgroundColor = e.target.dataset.hexColor;
     if (glowMode) {
       e.target.style.boxShadow = `0px 0px 30px 6px ${btnColorPicker.value}`;
     }
-  } else if (mode === "rainbow") {
+  } else if (brushMode === "rainbow") {
     brushCounter += 1;
     e.target.dataset.hexOpacityLevel = 15;
     e.target.dataset.hexColor = `${rainbowColor()}`;
@@ -127,12 +127,12 @@ const applyBrush = function (e) {
     if (glowMode) {
       e.target.style.boxShadow = `0px 0px 30px 6px ${rainbowColor()}`;
     }
-  } else if (mode === "eraser") {
+  } else if (brushMode === "eraser") {
     e.target.style.backgroundColor = "silver";
     e.target.style.boxShadow = "";
     e.target.dataset.hexOpacityLevel = 0;
     e.target.dataset.hexColor = 0;
-  } else if (mode === "shading") {
+  } else if (brushMode === "shading") {
     if (!e.target.dataset.hexColor || e.target.dataset.hexColor === "0") {
       e.target.dataset.hexOpacityLevel = 1;
 
@@ -173,7 +173,7 @@ const deactivateBrush = function () {
 };
 
 const changeCursorStyle = function () {
-  if (mode === "eraser") {
+  if (brushMode === "eraser") {
     sketchContainer.style.cursor = "crosshair";
   } else {
     sketchContainer.style.cursor = "cell";
@@ -198,7 +198,7 @@ const btnEraserHandler = function () {
   h1.innerHTML = "miniSKETCH";
   h1.classList.toggle("eraserMode");
   sketchContainer.classList.toggle("eraser-active");
-  mode !== "eraser" ? (mode = "eraser") : (mode = "default");
+  brushMode !== "eraser" ? (brushMode = "eraser") : (brushMode = "default");
   glowMode === true ? (glowMode = false) : null;
 };
 
@@ -207,11 +207,11 @@ const btnShadingHandler = function () {
   btnEraser.classList.remove("on");
   btnRainbow.classList.remove("on");
   sketchContainer.classList.remove("eraser-active");
-  if (mode === "shading") {
-    mode = "default";
+  if (brushMode === "shading") {
+    brushMode = "default";
     h1.innerHTML = "miniSKETCH";
   } else {
-    mode = "shading";
+    brushMode = "shading";
     h1.innerHTML = shadingText(h1);
     h1.classList.remove("eraserMode");
   }
@@ -234,12 +234,12 @@ const btnGlowHandler = function () {
   btnEraser.classList.remove("on");
   h1.classList.toggle("glowMode");
   h1.classList.remove("eraserMode");
-  mode === "eraser" ? (mode = "default") : null;
+  brushMode === "eraser" ? (brushMode = "default") : null;
   if (glowMode === true) {
     glowMode = false;
   } else {
     glowMode = true;
-    if (mode === "default") h1.innerHTML = "miniSKETCH";
+    if (brushMode === "default") h1.innerHTML = "miniSKETCH";
   }
 };
 
@@ -249,11 +249,11 @@ const btnRainbowHandler = function () {
   btnShading.classList.remove("on");
   h1.classList.remove("eraserMode");
   sketchContainer.classList.remove("eraser-active");
-  if (mode === "rainbow") {
-    mode = "default";
+  if (brushMode === "rainbow") {
+    brushMode = "default";
     h1.innerHTML = "miniSKETCH";
   } else {
-    mode = "rainbow";
+    brushMode = "rainbow";
     h1.innerHTML = rainbowText(h1);
   }
 };
