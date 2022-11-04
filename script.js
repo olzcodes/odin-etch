@@ -1,35 +1,24 @@
 const h1 = document.querySelector("h1");
+
 const sketchContainer = document.querySelector(".sketch-container");
+let canvasSize = 32;
+let canvasBlank = true;
+
 const rangeSlider = document.querySelector(".range-slider");
 const sliderControl = document.querySelector("#slider-control");
 const sliderValue = document.querySelector(".slider-value");
+
 const btnReset = document.querySelector(".button.reset");
 const btnColorPicker = document.querySelector(".color-picker");
 const btnEraser = document.querySelector(".button.eraser");
 const btnShading = document.querySelector(".button.shading");
 const btnGlow = document.querySelector(".button.glow");
 const btnRainbow = document.querySelector(".button.rainbow");
-let canvasBlank = true;
-let canvasSize = 32;
+
 let brushMode = "default";
 let glowMode = false;
 let brushCounter = 0;
-let gridStyle = 0;
-const gridStyles = {
-  0: "1px solid lightgrey",
-  1: "1px dashed lightgrey",
-  2: "none",
-};
-const rainbowColors = [
-  "#FFADAD",
-  "#FFD6A5",
-  "#FDFFB6",
-  "#CAFFBF",
-  "#9BF6FF",
-  "#A0C4FF",
-  "#BDB2FF",
-  "#FFC6FF",
-];
+
 const hexOpacityLevels = [
   "00",
   "11",
@@ -48,6 +37,24 @@ const hexOpacityLevels = [
   "EE",
   "FF",
 ];
+
+const rainbowColors = [
+  "#FFADAD",
+  "#FFD6A5",
+  "#FDFFB6",
+  "#CAFFBF",
+  "#9BF6FF",
+  "#A0C4FF",
+  "#BDB2FF",
+  "#FFC6FF",
+];
+
+let gridStyle = 0;
+const gridStyles = {
+  0: "1px solid lightgrey",
+  1: "1px dashed lightgrey",
+  2: "none",
+};
 
 const generateTiles = function (canvasSize) {
   for (i = 0; i < canvasSize; i++) {
