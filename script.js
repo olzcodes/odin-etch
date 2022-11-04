@@ -86,7 +86,7 @@ const changeResolution = function () {
   generateTiles(canvasSize);
 };
 
-const resizeTiles = function () {
+const windowResizeHandler = function () {
   let sketchContainerWidth = sketchContainer.clientWidth;
   const tile = document.querySelectorAll(".tile");
   tile.forEach((tile) => {
@@ -274,7 +274,7 @@ const rainbowText = function (HTMLelement) {
 
 // Event Listener - Window
 
-window.addEventListener("resize", resizeTiles);
+window.addEventListener("resize", windowResizeHandler);
 
 // Event Listeners - Canvas
 
