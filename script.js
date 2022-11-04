@@ -69,26 +69,8 @@ const generateTiles = function (canvasSize) {
 
 generateTiles(canvasSize);
 
-const resizeTiles = function () {
-  let sketchContainerWidth = sketchContainer.clientWidth;
-  const tile = document.querySelectorAll(".tile");
-  tile.forEach((tile) => {
-    tile.style.height = `${sketchContainerWidth / canvasSize}px`;
-    tile.style.width = `${sketchContainerWidth / canvasSize}px`;
-  });
-};
-
 const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
-};
-
-const toggleGridStyle = function () {
-  gridStyle++;
-  if (gridStyle > 2) gridStyle = 0;
-  const tiles = document.querySelectorAll(".tile");
-  tiles.forEach((tile) => {
-    tile.style.border = `${gridStyles[gridStyle]}`;
-  });
 };
 
 const changeResolution = function () {
@@ -102,6 +84,24 @@ const changeResolution = function () {
   sliderControl.setAttribute("value", canvasSize);
   deleteTiles();
   generateTiles(canvasSize);
+};
+
+const resizeTiles = function () {
+  let sketchContainerWidth = sketchContainer.clientWidth;
+  const tile = document.querySelectorAll(".tile");
+  tile.forEach((tile) => {
+    tile.style.height = `${sketchContainerWidth / canvasSize}px`;
+    tile.style.width = `${sketchContainerWidth / canvasSize}px`;
+  });
+};
+
+const toggleGridStyle = function () {
+  gridStyle++;
+  if (gridStyle > 2) gridStyle = 0;
+  const tiles = document.querySelectorAll(".tile");
+  tiles.forEach((tile) => {
+    tile.style.border = `${gridStyles[gridStyle]}`;
+  });
 };
 
 const rainbowColor = function () {
