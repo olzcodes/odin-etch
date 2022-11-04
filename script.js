@@ -75,8 +75,8 @@ const deleteTiles = function () {
 
 const changeResolution = function () {
   if (!canvasBlank) {
-    const reset = confirm("This will clear the canvas. Continue?");
-    if (!reset) {
+    const clear = confirm("This will clear the canvas. Continue?");
+    if (!clear) {
       return;
     }
   }
@@ -182,8 +182,8 @@ const changeCursorStyle = function () {
 
 const btnResetHandler = function () {
   if (!canvasBlank) {
-    const reset = confirm("This will clear the canvas. Continue?");
-    if (!reset) return;
+    const clear = confirm("This will clear the canvas. Continue?");
+    if (!clear) return;
   }
   deleteTiles();
   generateTiles(canvasSize);
