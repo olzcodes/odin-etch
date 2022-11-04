@@ -64,7 +64,10 @@ const generateTiles = function (canvasSize) {
     }
   }
   canvasBlank = true;
+  sliderValue.textContent = `${canvasSize} x ${canvasSize}`;
 };
+
+generateTiles(canvasSize);
 
 const resizeTiles = function () {
   let sketchContainerWidth = sketchContainer.clientWidth;
@@ -74,14 +77,6 @@ const resizeTiles = function () {
     tile.style.width = `${sketchContainerWidth / canvasSize}px`;
   });
 };
-
-const showSliderValue = function () {
-  sliderValue.textContent = `${canvasSize} x ${canvasSize}`;
-};
-
-showSliderValue();
-
-generateTiles(canvasSize);
 
 const deleteTiles = function () {
   sketchContainer.innerHTML = ``;
@@ -105,7 +100,6 @@ const changeResolution = function () {
   }
   canvasSize = this.value;
   sliderControl.setAttribute("value", canvasSize);
-  showSliderValue();
   deleteTiles();
   generateTiles(canvasSize);
 };
@@ -278,7 +272,7 @@ const rainbowText = function (HTMLelement) {
   return rainbowTextHTML;
 };
 
-// Event Listener - Window resizing
+// Event Listener - Window
 
 window.addEventListener("resize", resizeTiles);
 
