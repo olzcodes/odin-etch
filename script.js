@@ -182,8 +182,10 @@ const deactivateBrush = function () {
 const changeCursorStyle = function () {
   if (brushMode === "eraser") {
     sketchContainer.style.cursor = "crosshair";
+    sketchContainer.classList.add("eraser-active");
   } else {
     sketchContainer.style.cursor = "cell";
+    sketchContainer.classList.remove("eraser-active");
   }
 };
 
@@ -204,23 +206,25 @@ const btnEraserHandler = function () {
   h1.classList.remove("glowMode");
   h1.innerHTML = "miniSKETCH";
   h1.classList.toggle("eraserMode");
-  sketchContainer.classList.toggle("eraser-active");
-  brushMode !== "eraser" ? (brushMode = "eraser") : (brushMode = "default");
-  glowMode === true ? (glowMode = false) : null;
+  if (brushMode !== "eraser") {
+    brushMode = "eraser";
+    glowMode = false;
+  } else {
+    brushMode = "default";
+  }
 };
 
 const btnShadingHandler = function () {
   btnShading.classList.toggle("on");
   btnEraser.classList.remove("on");
   btnRainbow.classList.remove("on");
-  sketchContainer.classList.remove("eraser-active");
-  if (brushMode === "shading") {
-    brushMode = "default";
-    h1.innerHTML = "miniSKETCH";
-  } else {
+  h1.classList.remove("eraserMode");
+  if (brushMode !== "shading") {
     brushMode = "shading";
     h1.innerHTML = shadingText(h1);
-    h1.classList.remove("eraserMode");
+  } else {
+    brushMode = "default";
+    h1.innerHTML = "miniSKETCH";
   }
 };
 
@@ -241,12 +245,11 @@ const btnGlowHandler = function () {
   btnEraser.classList.remove("on");
   h1.classList.toggle("glowMode");
   h1.classList.remove("eraserMode");
-  brushMode === "eraser" ? (brushMode = "default") : null;
-  if (glowMode === true) {
-    glowMode = false;
-  } else {
+  if (glowMode === false) {
     glowMode = true;
-    if (brushMode === "default") h1.innerHTML = "miniSKETCH";
+    if (brushMode === "eraser") brushMode = "default";
+  } else {
+    glowMode = false;
   }
 };
 
@@ -256,12 +259,12 @@ const btnRainbowHandler = function () {
   btnShading.classList.remove("on");
   h1.classList.remove("eraserMode");
   sketchContainer.classList.remove("eraser-active");
-  if (brushMode === "rainbow") {
-    brushMode = "default";
-    h1.innerHTML = "miniSKETCH";
-  } else {
+  if (brushMode !== "rainbow") {
     brushMode = "rainbow";
     h1.innerHTML = rainbowText(h1);
+  } else {
+    brushMode = "default";
+    h1.innerHTML = "miniSKETCH";
   }
 };
 
