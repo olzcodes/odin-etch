@@ -1,10 +1,14 @@
-# odin-etch
+# miniSKETCH
 
 **LIVE DEMO: https://olzcodes.github.io/minisketch/**
 
 The aim of this project was to build a browser version of an Etch-A-Sketch drawing toy.
 
 https://www.theodinproject.com/lessons/foundations-etch-a-sketch
+
+## Screenshots
+
+![screenshot of drawing](./screenshots/screenshot-1.png)
 
 ## To-Do
 
