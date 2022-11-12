@@ -230,10 +230,10 @@ const btnShadingHandler = function () {
 
 const shadingText = function (HTMLelement) {
   const plainText = HTMLelement.textContent;
-  const array = plainText.split("");
+  const letters = plainText.split("");
   let RGBalpha = 1;
   let shadingTextHTML = "";
-  array.forEach((letter) => {
+  letters.forEach((letter) => {
     RGBalpha -= 0.08;
     shadingTextHTML += `<span style="color: rgba(255, 255, 255, ${RGBalpha})">${letter}</span>`;
   });
