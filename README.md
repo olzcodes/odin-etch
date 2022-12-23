@@ -20,6 +20,7 @@ https://www.theodinproject.com/lessons/foundations-etch-a-sketch
 - [DONE] Add eraser
 - [DONE] Add glow mode
 - [DONE] Add shading brush (incremental coloring)
+- Add option to download sketch as PNG file
 - Improve support for touch devices
 
 ## What I learnt from this project
