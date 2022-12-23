@@ -8,7 +8,9 @@ https://www.theodinproject.com/lessons/foundations-etch-a-sketch
 
 ## Screenshots
 
-![screenshot of drawing](./screenshots/screenshot-1.png)
+![screenshot of drawing (mobile)](./screenshots/screenshot-1.png)
+
+![screenshot of drawing (desktop)](./screenshots/screenshot-2.png)
 
 ## To-Do
 
