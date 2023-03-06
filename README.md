@@ -27,7 +27,7 @@ Desktop layout
 - Add option to download sketch as PNG file
 - Improve support for touch devices
 
-## What I learnt from this project
+## What I learned from this project
 
 - Generating hundreds of new DOM elements can affect performance and degrade UX drastically.
 - It is easy to mess up a Git repository and trying to undo mistakes can be rather complicated.
